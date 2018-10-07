@@ -102,9 +102,6 @@ public class DBDemo5 extends JFrame implements ActionListener {
 			e.printStackTrace();
 			return;
 		}
-		//Setting up the gui along with the Run method
-		setUpGUI();
-	
 	}
 	
 	// what happens after you click the buttons
@@ -154,19 +151,19 @@ public class DBDemo5 extends JFrame implements ActionListener {
            // Insert delete current record code here
 	}
     
-    	if(e.getSource()== buttonClear) 
+    	if(e.getSource() == buttonClear) 
     	{
     		System.out.println("You pressed Clear");
     		//Insert clear current record code here
     	}
     	
-    	if(e.getSource() ==buttonUpdate)
+    	if(e.getSource() == buttonUpdate)
     	{
     		System.out.println("You pressed Update");
     		//Insert update current record code here
     	}
     	
-    	if(e.getSource()== buttonAdd)
+    	if(e.getSource() == buttonAdd)
     	{
     		System.out.println("You pressed Add");
     		//Insert add current record code here
@@ -311,6 +308,6 @@ public class DBDemo5 extends JFrame implements ActionListener {
 		app.run();
         app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         app.pack();
-        app.setVisible(true);
+       // app.setVisible(true);
 	}
 }
