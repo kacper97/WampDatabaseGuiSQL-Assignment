@@ -150,10 +150,27 @@ public class DBDemo5 extends JFrame implements ActionListener {
 	}
     	if (e.getSource() == buttonDelete)
 	{
-		System.out.println("You pressed DELETE");
+		System.out.println("You pressed Delete");
            // Insert delete current record code here
 	}
+    
+    	if(e.getSource()== buttonClear) 
+    	{
+    		System.out.println("You pressed Clear");
+    		//Insert clear current record code here
+    	}
     	
+    	if(e.getSource() ==buttonUpdate)
+    	{
+    		System.out.println("You pressed Update");
+    		//Insert update current record code here
+    	}
+    	
+    	if(e.getSource()== buttonAdd)
+    	{
+    		System.out.println("You pressed Add");
+    		//Insert add current record code here
+    	}
     	
     }
     
