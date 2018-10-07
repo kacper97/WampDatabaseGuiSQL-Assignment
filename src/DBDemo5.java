@@ -11,9 +11,9 @@ import java.util.Properties;
 
 public class DBDemo5 extends JFrame implements ActionListener {
     private JLabel labelHeading, labelSSn, labelDOB, labelName, labelAddress, labelSalary, labelGender;
-    private JButton buttonPrev, buttonNext, buttonDelete, buttonAdd, buttonUpdate, buttonClear;
+    private JButton buttonPrevious, buttonNext, buttonDelete, buttonAdd, buttonUpdate, buttonClear;
     private JTextField txtSSn, txtDOB, txtName, txtAddress, txtSalary, txtGender;
-    private JPanel panelNorth, panelSouth, panelCenter, panelWest;
+    private JFrame frame;
     private ResultSet rs = null;
 
 	/** The name of the MySQL account to use (or empty for anonymous) */
@@ -102,12 +102,14 @@ public class DBDemo5 extends JFrame implements ActionListener {
 			e.printStackTrace();
 			return;
 		}
+		//Setting up the gui along with the Run method
+		setUpGUI();
 	
 	}
 	
 	// what happens after you click the buttons
     public void actionPerformed(ActionEvent e) {
-    	if (e.getSource() == buttonPrev)
+    	if (e.getSource() == buttonPrevious)
 	{
 		System.out.println("You pressed PREVIOUS");
            // Insert resultSet.previous() code here
@@ -155,78 +157,133 @@ public class DBDemo5 extends JFrame implements ActionListener {
     	
     }
     
-	 public void setUpGUI() {
+    
+	 public void setUpGUI() {	
+		 
+	     
+		 //Starting Frame
+		frame = new JFrame();
+		frame.setVisible(true);
+		frame.setBounds(100, 100, 500, 368);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setLayout(null);
+        
+		 // Labels initialization
+			  labelSSn = new JLabel("SSn");
+			  labelDOB= new JLabel("DOB");
+			  labelName = new JLabel("Name");
+			  labelAddress = new JLabel("Address");
+			  labelSalary = new JLabel("Salary");
+			  labelGender = new JLabel("Gender");
+			  labelHeading = new JLabel("Employee Details");
 
-		// 3. Set up GUI
+			 // Text Fields initialization
+			 txtSSn = new JTextField();
+			 txtDOB = new JTextField();
+			 txtName = new JTextField();
+			 txtAddress = new JTextField();
+			 txtSalary = new JTextField();
+			 txtGender = new JTextField();
+			 
+			 // Buttons initialization
+			 buttonAdd = new JButton("Add");
+			 buttonNext = new JButton("Next");
+		     buttonPrevious = new JButton("Previous");
+		     buttonUpdate = new JButton("Update");
+		     buttonClear = new JButton("Clear");
+		     buttonDelete= new JButton("Delete");
 
-			// Labels
-		    		labelHeading = new JLabel("EMPLOYEE DETAILS", JLabel.CENTER);
-		        	labelSSn = new JLabel("SSn", JLabel.CENTER);
-		        	labelDOB = new JLabel("DOB", JLabel.CENTER);
-		        	labelName = new JLabel("Name",JLabel.CENTER);
-		        	labelAddress = new JLabel("Address",JLabel.CENTER);
-		        	labelSalary = new JLabel("Salary",JLabel.CENTER);
-		        	labelGender = new JLabel("Gender",JLabel.CENTER);
-		        	
-			// TextFields
-		        	try {
-						txtSSn = new JTextField(rs.getString("id"));
-			        	txtDOB = new JTextField(rs.getString("DOB"));
-			        	txtName = new JTextField(rs.getString("Name"));
-			        	txtAddress = new JTextField(rs.getString("Address"));
-			        	txtSalary = new JTextField(rs.getString("Salary"));
-			        	txtGender = new JTextField(rs.getString("Gender"));
-			        	
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-		      
-			// Buttons
-		        	buttonPrev = new JButton("Previous");
-		        	buttonNext = new JButton("Next");
-		        	buttonDelete = new JButton("Delete");  
-		        	buttonAdd = new JButton("Add");
-		        	buttonUpdate = new JButton("Update");
-		        	buttonClear = new JButton("Clear");
-		        	
-		        	
-			// Panels       
-		        	panelNorth = new JPanel();
-		        	panelNorth.add(labelHeading);
+	        /*
+	         * Bounds 
+	         * x - the new x-coordinate of this component
+			   y - the new y-coordinate of this component
+			   width - the new width of this component
+			   height - the new height of this component	
+	         */
+	        //Add Button
+	        buttonAdd.setBounds(93, 273, 64, 25);
+	        buttonAdd.setText("Add");
+	        frame.getContentPane().add(buttonAdd);
 
-			 		panelSouth = new JPanel();
-					panelSouth.add(buttonAdd);
-					panelSouth.add(buttonDelete);
-					panelSouth.add(buttonUpdate);
-		    	
-		    		panelWest = new JPanel();
-		    		panelWest.add(labelSSn);
-		    		panelWest.add(txtSSn);
-		    		panelWest.add(labelDOB);
-		    		panelWest.add(txtDOB);   	
-		    		panelWest.add(labelName);
-		    		panelWest.add(txtName);
-		    		panelWest.add(labelAddress);
-		    		panelWest.add(txtAddress);
-		    		panelWest.add(labelSalary);
-		    		panelWest.add(txtSalary);
-		    		panelWest.add(labelGender);
-		    		panelWest.add(txtGender);
+	        //Text Field SSN
+	        txtSSn.setBounds(93, 55, 315, 27);
+	        frame.getContentPane().add(txtSSn);
 
-			// Add Panels
-		        	add(panelNorth, BorderLayout.NORTH);
-		        	add(panelSouth, BorderLayout.SOUTH);
-		        	add(panelWest, BorderLayout.WEST);
+	        //Label SSN
+	        labelSSn.setBounds(35, 60, 46, 20);
+	        frame.getContentPane().add(labelSSn);
+
+	        //Text Field DOB
+	        txtDOB.setBounds(93, 93, 315, 27);
+	        frame.getContentPane().add(txtDOB);
+
+	        //Label DOB
+	        labelDOB.setBounds(35, 98, 46, 20);
+	        frame.getContentPane().add(labelDOB);
+
+	        //Text Field Name
+	        txtName.setBounds(93, 130, 315, 27);
+	        frame.getContentPane().add(txtName);
+
+	        //Label Name
+	        labelName.setBounds(35, 135, 46, 20);
+	        frame.getContentPane().add(labelName);
+
+	        //Text Field Address
+	        txtAddress.setBounds(93, 165, 315, 27);
+	        frame.getContentPane().add(txtAddress);
+
+	        //Label Address
+	        labelAddress.setBounds(35, 170, 55, 20);
+	        frame.getContentPane().add(labelAddress);
+
+	       	//Text Field Salary
+	        txtSalary.setBounds(93, 201, 315, 27);
+	        frame.getContentPane().add(txtSalary);
+
+	        //Label Salary
+	        labelSalary.setBounds(35, 206, 46, 20);
+	        frame.getContentPane().add(labelSalary);
+
+	        //Text Field Gender
+	        txtGender.setBounds(93, 237, 315, 27);
+	        frame.getContentPane().add(txtGender);
+	        
+	        //Label Gender
+	     	labelGender.setBounds(35, 242, 46, 20);
+	        frame.getContentPane().add(labelGender);
+
+	        //Label Heading
+	        labelHeading.setBounds(198, 24, 315,30);
+	        frame.getContentPane().add(labelHeading);
+
+	        //Button Delete
+	        buttonDelete.setBounds(144, 273, 80, 25);
+	        frame.getContentPane().add(buttonDelete);
+
+	        //Button Clear
+	        buttonClear.setBounds(415, 273, 90, 25);
+	        frame.getContentPane().add(buttonClear);
+
+	        //Button Update
+	        buttonUpdate.setBounds(211, 273, 80, 25);
+	        frame.getContentPane().add(buttonUpdate);
+
+	        //Button Previous
+	        buttonPrevious.setBounds(415, 55, 90, 25);
+	        frame.getContentPane().add(buttonPrevious);
+
+	        //Button Next
+	        buttonNext.setBounds(415, 80, 90, 25);
+	        frame.getContentPane().add(buttonNext);
 		        	
 			// Add action listeners
-		        	buttonPrev.addActionListener(this);
+		        	buttonPrevious.addActionListener(this);
 		        	buttonNext.addActionListener(this);
 		        	buttonDelete.addActionListener(this);
 		        	buttonAdd.addActionListener(this);
 		        	buttonUpdate.addActionListener(this);
 		        	buttonClear.addActionListener(this);
-		        	
 		    }
 	 
 	/**
@@ -235,9 +292,7 @@ public class DBDemo5 extends JFrame implements ActionListener {
 	public static void main(String[] args) {
 		DBDemo5 app = new DBDemo5();
 		app.run();
-		app.setUpGUI();
         app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        app.setPreferredSize(new Dimension(400, 300));
         app.pack();
         app.setVisible(true);
 	}
