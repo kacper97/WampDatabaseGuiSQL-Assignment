@@ -13,7 +13,7 @@ public class DBDemo5 extends JFrame implements ActionListener {
     private JLabel labelHeading, labelSSn, labelDOB, labelName, labelAddress, labelSalary, labelGender;
     private JButton buttonPrevious, buttonNext, buttonDelete, buttonAdd, buttonUpdate, buttonClear;
     private JTextField txtSSn, txtDOB, txtName, txtAddress, txtSalary, txtGender;
-    private JFrame frame;
+
     private ResultSet rs = null;
 
 	/** The name of the MySQL account to use (or empty for anonymous) */
@@ -76,7 +76,6 @@ public class DBDemo5 extends JFrame implements ActionListener {
 	 * Connect to MySQL and do some stuff.
 	 */
 	public void run() {
-
 		// Connect to MySQL
 		Connection conn = null;
 		try {
@@ -173,10 +172,8 @@ public class DBDemo5 extends JFrame implements ActionListener {
     
     
 	 public void setUpGUI() {	
-		 
-	     
 		 //Starting Frame
-		frame = new JFrame();
+		JFrame frame = new JFrame();
 		frame.setVisible(true);
 		frame.setBounds(100, 100, 500, 368);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -306,8 +303,10 @@ public class DBDemo5 extends JFrame implements ActionListener {
 	public static void main(String[] args) {
 		DBDemo5 app = new DBDemo5();
 		app.run();
+		app.setUpGUI();
         app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      //  app.setPreferredSize(new Dimension(400,300));
         app.pack();
-       // app.setVisible(true);
+        app.setVisible(true);
 	}
 }
