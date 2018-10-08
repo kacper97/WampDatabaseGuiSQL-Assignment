@@ -1,7 +1,10 @@
 package view;
 
+import utils.Connector;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,11 +21,79 @@ public class EmployeeGui extends JFrame implements ActionListener{
 	JFrame frame = new JFrame();
 
 
+
+	 /*
+	  * Handles action peerformed when a specific button is pressed 
+	  * for more
+	  * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	  */
+	
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
+	public void actionPerformed(ActionEvent e) {
+    	if (e.getSource() == buttonPrevious)
+	{
+		System.out.println("You pressed PREVIOUS");
+           // Insert resultSet.previous() code here
+			try {
+				rs.previous();
+				// Update Text fields
+			   	txtSSn.setText(rs.getString("id"));
+			   	txtDOB.setText(rs.getString("DOB"));
+			   	txtName.setText(rs.getString("Name"));
+			   	txtAddress.setText(rs.getString("Address"));
+			   	txtSalary.setText(rs.getString("Salary"));
+			   	txtGender.setText(rs.getString("Gender"));
+			   	
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
 	}
+    	if (e.getSource() == buttonNext)
+	{
+		System.out.println("You pressed NEXT");
+           // Insert resultSet.next() code here
+			try {
+				rs.next();
+				// Update Text fields
+				txtSSn.setText(rs.getString("id"));
+				txtDOB.setText(rs.getString("DOB"));
+				txtName.setText(rs.getString("Name"));
+			   	txtAddress.setText(rs.getString("Address"));
+			   	txtSalary.setText(rs.getString("Salary"));
+			   	txtGender.setText(rs.getString("Gender"));
+			   	
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	}
+    	if (e.getSource() == buttonDelete)
+	{
+		System.out.println("You pressed Delete");
+           // Insert delete current record code here
+	}
+    
+    	if(e.getSource() == buttonClear) 
+    	{
+    		System.out.println("You pressed Clear");
+    		//Insert clear current record code here
+    	}
+    	
+    	if(e.getSource() == buttonUpdate)
+    	{
+    		System.out.println("You pressed Update");
+    		//Insert update current record code here
+    	}
+    	
+    	if(e.getSource() == buttonAdd)
+    	{
+    		System.out.println("You pressed Add");
+    		//Insert add current record code here
+    	}
+    	
+    }
 	
 	/*
 	 * Construction of GUI
