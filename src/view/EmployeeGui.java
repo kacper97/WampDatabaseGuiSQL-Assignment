@@ -5,6 +5,7 @@ import utils.Connector;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.sql.ResultSet;
 
 import javax.swing.JButton;
@@ -102,7 +103,15 @@ public class EmployeeGui extends JFrame implements ActionListener{
     	if(e.getSource() == buttonUpdate)
     	{
     		System.out.println("You pressed Update");
-    		//Insert update current record code here
+    		try {
+    			Objects.equals(txtSSn.getText().toLowerCase(), rs.getString("id").toLowerCase());
+    			rs.updateString("id", txtSSn.getText());
+    			
+    			
+    			
+    		}catch(SQLException e1) {
+    			e1.printStackTrace();
+    		}
     	}
     	
     	if(e.getSource() == buttonAdd)
