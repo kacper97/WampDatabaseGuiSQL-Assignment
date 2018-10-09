@@ -106,9 +106,13 @@ public class EmployeeGui extends JFrame implements ActionListener{
     		try {
     			Objects.equals(txtSSn.getText().toLowerCase(), rs.getString("id").toLowerCase());
     			rs.updateString("id", txtSSn.getText());
-    			
-    			
-    			
+    			rs.updateString("dob", txtDOB.getText());
+    			rs.updateString("name", txtName.getText());
+    			rs.updateString("address", txtAddress.getText());
+    			rs.updateInt("salary", Integer.parseInt(txtSalary.getText()));
+    			rs.updateString("gender", txtGender.getText());
+    			rs.updateRow();
+
     		}catch(SQLException e1) {
     			e1.printStackTrace();
     		}
@@ -117,7 +121,18 @@ public class EmployeeGui extends JFrame implements ActionListener{
     	if(e.getSource() == buttonAdd)
     	{
     		System.out.println("You pressed Add");
-    		//Insert add current record code here
+    		try {
+    			rs.moveToInsertRow();
+    			rs.updateString("id", txtSSn.getText());
+    			rs.updateString("dob", txtDOB.getText());
+    			rs.updateString("name", txtName.getText());
+    			rs.updateString("address", txtAddress.getText());
+    			rs.updateInt("salary", Integer.parseInt(txtSalary.getText()));
+    			rs.updateString("gender", txtGender.getText());
+    			rs.insertRow();
+    		}catch(SQLException e1) {
+    			e1.printStackTrace();
+    		}
     	}
 	
     }
