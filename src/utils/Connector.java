@@ -56,8 +56,7 @@ public class Connector  {
 	
 	public ResultSet run() throws SQLException {
 		// Connect to MySQL
-		Statement stmt = getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
-                ResultSet.CONCUR_UPDATABLE);
+		Statement stmt = getConnection().createStatement();
         stmt.executeQuery("SELECT * FROM jdbc_test");
         //System.out.println("Created a result set");
         ResultSet rs = stmt.getResultSet();

@@ -143,7 +143,7 @@ public class EmployeeGui extends JFrame implements ActionListener{
 	public EmployeeGui() throws SQLException {
 	frame = new JFrame();
 	frame.setVisible(true);
-	frame.setBounds(100, 100, 500, 368);
+	frame.setBounds(100, 100, 550, 400);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.getContentPane().setLayout(null);
     
@@ -272,7 +272,7 @@ public class EmployeeGui extends JFrame implements ActionListener{
 	
     /*
     Sets text fields
-     */
+         */
     private void rsText(String id, String dob, String name, String address, int salary, String gender){
         txtSSn.setText(id);
         txtDOB.setText(dob);
