@@ -83,7 +83,7 @@ public class EmployeeGui extends JFrame implements ActionListener{
         	   }
 	}
     
-    	//Retrieves whether the cursor is before the first row in this ResultSet object. 
+    	//Retrieves whether the cursor is before the first row inthis ResultSet object. 
     	if(e.getSource() == buttonClear) 
     	{
     		System.out.println("You pressed Clear");
@@ -143,7 +143,7 @@ public class EmployeeGui extends JFrame implements ActionListener{
 	public EmployeeGui() throws SQLException {
 	frame = new JFrame();
 	frame.setVisible(true);
-	frame.setBounds(200, 200, 550, 400);
+	frame.setBounds(400,400, 700, 400);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.getContentPane().setLayout(null);
     
@@ -185,51 +185,51 @@ public class EmployeeGui extends JFrame implements ActionListener{
         frame.getContentPane().add(buttonAdd);
 
         //Text Field SSN
-        txtSSn.setBounds(93, 55, 315, 27);
+        txtSSn.setBounds(130, 55, 315, 27);
         frame.getContentPane().add(txtSSn);
 
         //Label SSN
-        labelSSn.setBounds(35, 60, 46, 20);
+        labelSSn.setBounds(25, 60, 46, 20);
         frame.getContentPane().add(labelSSn);
 
         //Text Field DOB
-        txtDOB.setBounds(93, 93, 315, 27);
+        txtDOB.setBounds(130, 93, 315, 27);
         frame.getContentPane().add(txtDOB);
 
         //Label DOB
-        labelDOB.setBounds(35, 98, 46, 20);
+        labelDOB.setBounds(25, 98, 46, 20);
         frame.getContentPane().add(labelDOB);
 
         //Text Field Name
-        txtName.setBounds(93, 130, 315, 27);
+        txtName.setBounds(130, 130, 315, 27);
         frame.getContentPane().add(txtName);
 
         //Label Name
-        labelName.setBounds(35, 135, 46, 20);
+        labelName.setBounds(25, 135, 46, 20);
         frame.getContentPane().add(labelName);
 
         //Text Field Address
-        txtAddress.setBounds(93, 165, 315, 27);
+        txtAddress.setBounds(130, 165, 315, 27);
         frame.getContentPane().add(txtAddress);
 
         //Label Address
-        labelAddress.setBounds(35, 170, 55, 20);
+        labelAddress.setBounds(25, 170, 55, 20);
         frame.getContentPane().add(labelAddress);
 
        	//Text Field Salary
-        txtSalary.setBounds(93, 201, 315, 27);
+        txtSalary.setBounds(130, 201, 315, 27);
         frame.getContentPane().add(txtSalary);
 
         //Label Salary
-        labelSalary.setBounds(35, 206, 46, 20);
+        labelSalary.setBounds(25, 206, 46, 20);
         frame.getContentPane().add(labelSalary);
 
         //Text Field Gender
-        txtGender.setBounds(93, 237, 315, 27);
+        txtGender.setBounds(130, 237, 315, 27);
         frame.getContentPane().add(txtGender);
         
         //Label Gender
-     	labelGender.setBounds(35, 242, 46, 20);
+     	labelGender.setBounds(25, 242, 46, 20);
         frame.getContentPane().add(labelGender);
 
         //Label Heading
