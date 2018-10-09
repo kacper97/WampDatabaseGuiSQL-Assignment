@@ -143,7 +143,7 @@ public class EmployeeGui extends JFrame implements ActionListener{
 	public EmployeeGui() throws SQLException {
 	frame = new JFrame();
 	frame.setVisible(true);
-	frame.setBounds(100, 100, 550, 400);
+	frame.setBounds(200, 200, 550, 400);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.getContentPane().setLayout(null);
     
