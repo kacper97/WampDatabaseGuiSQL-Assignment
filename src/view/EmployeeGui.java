@@ -73,13 +73,30 @@ public class EmployeeGui extends JFrame implements ActionListener{
     	if (e.getSource() == buttonDelete)
 	{
 		System.out.println("You pressed Delete");
-           // Insert delete current record code here
+           try {
+        	rs.deleteRow();
+        	getSQL();
+           }catch(SQLException e1) {
+        	   // TODO Auto-generated catch block
+        	   e1.printStackTrace();         
+        	   }
 	}
     
+    	//Retrieves whether the cursor is before the first row inthis ResultSet object. 
     	if(e.getSource() == buttonClear) 
     	{
     		System.out.println("You pressed Clear");
-    		//Insert clear current record code here
+    		try {
+    			rs.isBeforeFirst();
+    			txtSSn.setText("");
+    			txtDOB.setText("");
+    			txtName.setText("");
+    			txtAddress.setText("");
+    			txtSalary.setText("");
+    			txtGender.setText("");
+    		}catch(SQLException e1){
+    			e1.printStackTrace();
+    		}
     	}
     	
     	if(e.getSource() == buttonUpdate)

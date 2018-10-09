@@ -47,7 +47,13 @@ public class Connector  {
 
 	/**
 	 * Connect to MySQL and execute update added together and refactored
+	 * 
+	 * USED CONCUR UPDATABLE BECAUSE I WAS GETTING THE FOLLOWING ERROR : 
+	 * Result Set not updatable (referenced table has no primary keys).This result set must come from a statement that was created with a result set type of ResultSet.CONCUR_UPDATABLE.
+	 * The query must select only one table, can not use functions and must select all primary keys from that table. 
+	 * See the JDBC 2.1 API Specification, section 5.6 for more detail
 	 */
+	
 	public ResultSet run() throws SQLException {
 		// Connect to MySQL
 		Statement stmt = getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
