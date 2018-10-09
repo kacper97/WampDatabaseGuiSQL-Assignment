@@ -83,7 +83,7 @@ public class EmployeeGui extends JFrame implements ActionListener{
         	   }
 	}
     
-    	//Retrieves whether the cursor is before the first row inthis ResultSet object. 
+    	//Retrieves whether the cursor is before the first row in this ResultSet object. 
     	if(e.getSource() == buttonClear) 
     	{
     		System.out.println("You pressed Clear");
