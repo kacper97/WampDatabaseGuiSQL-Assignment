@@ -5,8 +5,6 @@ import utils.Connector;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Connection;
 import java.sql.ResultSet;
 
 import javax.swing.JButton;
@@ -19,13 +17,12 @@ public class EmployeeGui extends JFrame implements ActionListener{
 	 private JLabel labelHeading, labelSSn, labelDOB, labelName, labelAddress, labelSalary, labelGender;
 	 private JButton buttonPrevious, buttonNext, buttonDelete, buttonAdd, buttonUpdate, buttonClear;
 	 private JTextField txtSSn, txtDOB, txtName, txtAddress, txtSalary, txtGender;
-	 private ResultSet rs = null;
 
 	 private Connector conn = new Connector();
 	
 	 JFrame frame = new JFrame();
 
-	private ResultSet set;
+	private ResultSet rs;
 	
 	
 	 /*
@@ -34,46 +31,44 @@ public class EmployeeGui extends JFrame implements ActionListener{
 	  * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	  */
 	
-	@Override
+	
 	public void actionPerformed(ActionEvent e) {
-    	if (e.getSource() == buttonPrevious)
+    
+		if (e.getSource() == buttonPrevious)
 	{
 		System.out.println("You pressed PREVIOUS");
-           // Insert resultSet.previous() code here
-			try {
-				rs.previous();
-				// Update Text fields
-			   	txtSSn.setText(rs.getString("id"));
-			   	txtDOB.setText(rs.getString("DOB"));
-			   	txtName.setText(rs.getString("Name"));
-			   	txtAddress.setText(rs.getString("Address"));
-			   	txtSalary.setText(rs.getString("Salary"));
-			   	txtGender.setText(rs.getString("Gender"));
-			   	
+			try {	
+						rs.previous();
+		            rsText  (rs.getString("id"),
+		                    rs.getString("dob"),
+		                    rs.getString("name"),
+		                    rs.getString("address"),
+		                    rs.getInt("salary"),
+		                    rs.getString("gender"));
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
-	}
+		}
+			
     	if (e.getSource() == buttonNext)
 	{
 		System.out.println("You pressed NEXT");
            // Insert resultSet.next() code here
 			try {
 				rs.next();
-				// Update Text fields
-				txtSSn.setText(rs.getString("id"));
-				txtDOB.setText(rs.getString("DOB"));
-				txtName.setText(rs.getString("Name"));
-			   	txtAddress.setText(rs.getString("Address"));
-			   	txtSalary.setText(rs.getString("Salary"));
-			   	txtGender.setText(rs.getString("Gender"));
+				rsText(rs.getString("id"),
+		                rs.getString("dob"),
+		                rs.getString("name"),
+		                rs.getString("address"),
+		                rs.getInt("salary"),
+		                rs.getString("gender"));
 			   	
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			
 	}
     	if (e.getSource() == buttonDelete)
 	{
@@ -98,7 +93,7 @@ public class EmployeeGui extends JFrame implements ActionListener{
     		System.out.println("You pressed Add");
     		//Insert add current record code here
     	}
-    	
+	
     }
 	
 	/*
@@ -237,7 +232,7 @@ public class EmployeeGui extends JFrame implements ActionListener{
     /*
     Sets text fields
      */
-    private void setText(String id, String dob, String name, String address, int salary, String gender){
+    private void rsText(String id, String dob, String name, String address, int salary, String gender){
         txtSSn.setText(id);
         txtDOB.setText(dob);
         txtName.setText(name);
@@ -247,14 +242,14 @@ public class EmployeeGui extends JFrame implements ActionListener{
     }
 	
 	private void getSQL() throws SQLException{
-		set = conn.run();
-		if(set.next()) {
-			setText(set.getString("id"),
-					set.getString("dob"),
-					set.getString("name"),
-					set.getString("address"),
-					set.getInt("salary"),
-					set.getString("gender"));
+		rs = conn.run();
+		if(rs.next()) {
+			rsText(rs.getString("id"),
+					rs.getString("dob"),
+					rs.getString("name"),
+					rs.getString("address"),
+					rs.getInt("salary"),
+					rs.getString("gender"));
 		}
 	}
 }
