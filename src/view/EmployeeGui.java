@@ -12,6 +12,7 @@ import javax.swing.*;
 
 public class EmployeeGui extends JFrame implements ActionListener {
 	
+	//initializing all the fields 
 	 private JFrame frame;
 	 private JLabel labelHeading;
 	 private JLabel labelSSn;
@@ -49,59 +50,75 @@ public class EmployeeGui extends JFrame implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
 
-        // Text Field
+        // Text SSn
         txtSSn = new JTextField();
         txtSSn.setBounds(95, 55, 315, 30);
         frame.getContentPane().add(txtSSn);
 
+        //label for SSn
         labelSSn = new JLabel("SSn");
         labelSSn.setBounds(35, 60, 45, 20);
         frame.getContentPane().add(labelSSn);
 
+        //text Dob
         txtDOB = new JTextField();
         txtDOB.setBounds(95, 90, 315, 30);
         frame.getContentPane().add(txtDOB);
 
+        //label DOB
         labelDOB = new JLabel("DOB");
         labelDOB.setBounds(35, 98, 45, 20);
         frame.getContentPane().add(labelDOB);
 
+        //text name
         txtName = new JTextField();
         txtName.setBounds(95, 130, 315, 30);
         frame.getContentPane().add(txtName);
 
+        //name label
         labelName = new JLabel("Name");
         labelName.setBounds(35, 135, 45, 20);
         frame.getContentPane().add(labelName);
 
+        //text address
         txtAddress = new JTextField();
         txtAddress.setBounds(95, 165, 315, 30);
         frame.getContentPane().add(txtAddress);
 
+        //label address
         labelAddress = new JLabel("Address");
         labelAddress.setBounds(35, 170, 55, 20);
         frame.getContentPane().add(labelAddress);
 
+        //text salary
         txtSalary = new JTextField();
         txtSalary.setBounds(95, 201, 315, 30);
         frame.getContentPane().add(txtSalary);
 
+        //label Salary
         labelSalary = new JLabel("Salary");
         labelSalary.setBounds(35, 200, 45, 20);
         frame.getContentPane().add(labelSalary);
 
+        //text Gender
         txtGender = new JTextField();
         txtGender.setBounds(95, 237, 315, 30);
         frame.getContentPane().add(txtGender);
 
+        //label Gender
         labelGender = new JLabel("Gender");
         labelGender.setBounds(35, 242, 46, 20);
         frame.getContentPane().add(labelGender);
 
+        //label heading
         labelHeading = new JLabel("Employee Details");
         labelHeading.setBounds(200, 24, 315,30);
         frame.getContentPane().add(labelHeading);
         
+        
+        /*
+         * Buttons and button handlers
+         */
         buttonAdd = new JButton();
         buttonAdd.setBounds(95, 275, 60, 25);
         buttonAdd.setText("Add");
@@ -152,12 +169,12 @@ public class EmployeeGui extends JFrame implements ActionListener {
 	
 	
 	public void actionPerformed(ActionEvent e) {
-    
+		  // when next is pressed, next entry is taken from sql
 		if (e.getSource() == buttonPrevious)
 	{
 		System.out.println("You pressed PREVIOUS");
 			try {	
-						rs.previous();
+						rs.next();
 		            setText  (rs.getString("id"),
 		                    rs.getString("dob"),
 		                    rs.getString("name"),
@@ -165,15 +182,14 @@ public class EmployeeGui extends JFrame implements ActionListener {
 		                    rs.getInt("salary"),
 		                    rs.getString("gender"));
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
 			
+		  // when next is pressed, next entry is taken from sql
     	if (e.getSource() == buttonNext)
 	{
 		System.out.println("You pressed NEXT");
-           // Insert resultSet.next() code here
 			try {
 				rs.next();
 				setText(rs.getString("id"),
@@ -184,11 +200,12 @@ public class EmployeeGui extends JFrame implements ActionListener {
 		                rs.getString("gender"));
 			   	
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			
 	}
+    	
+    	//if delete is pressed, the result set deletes the entries from the row
     	if (e.getSource() == buttonDelete)
 	{
 		System.out.println("You pressed Delete");
@@ -196,11 +213,11 @@ public class EmployeeGui extends JFrame implements ActionListener {
         	rs.deleteRow();
         	getSQL();
            }catch(SQLException e1) {
-        	   // TODO Auto-generated catch block
         	   e1.printStackTrace();         
         	   }
 	}
     
+    	// Here the fields are cleared, so that it is possible to type something in
     	//Retrieves whether the cursor is before the first row inthis ResultSet object. 
     	if(e.getSource() == buttonClear) 
     	{
@@ -218,6 +235,8 @@ public class EmployeeGui extends JFrame implements ActionListener {
     		}
     	}
     	
+    	//when update is pressed the id is checked to see for primary keys and duplicates
+    	// then the new updated values are placed in the row of the sql database
     	if(e.getSource() == buttonUpdate)
     	{
     		System.out.println("You pressed Update");
@@ -236,6 +255,10 @@ public class EmployeeGui extends JFrame implements ActionListener {
     		}
     	}
     	
+    	//when add is pressed
+    	// result sets moves into a new row not to overwrite data
+    	// updates strings from values inserted and puts them in new row
+    	// difference between update and add is the moving into new row
     	if(e.getSource() == buttonAdd)
     	{
     		System.out.println("You pressed Add");
@@ -268,6 +291,7 @@ public class EmployeeGui extends JFrame implements ActionListener {
         txtGender.setText(gender);
     }
 	
+    // gets the result set
 	private void getSQL() throws SQLException{
 		rs = conn.run();
 		if(rs.next()) {
