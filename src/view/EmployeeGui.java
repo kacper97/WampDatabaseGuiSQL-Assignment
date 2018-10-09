@@ -5,6 +5,9 @@ import utils.Connector;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Connection;
+import java.sql.ResultSet;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,14 +19,16 @@ public class EmployeeGui extends JFrame implements ActionListener{
 	 private JLabel labelHeading, labelSSn, labelDOB, labelName, labelAddress, labelSalary, labelGender;
 	 private JButton buttonPrevious, buttonNext, buttonDelete, buttonAdd, buttonUpdate, buttonClear;
 	 private JTextField txtSSn, txtDOB, txtName, txtAddress, txtSalary, txtGender;
+	 private ResultSet rs = null;
 
 	
 	JFrame frame = new JFrame();
 
-
-
+	private ResultSet set;
+	
+	
 	 /*
-	  * Handles action peerformed when a specific button is pressed 
+	  * Handles action performed when a specific button is pressed 
 	  * for more
 	  * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	  */

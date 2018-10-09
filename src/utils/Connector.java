@@ -1,8 +1,4 @@
 package utils;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -10,10 +6,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-public class DBDemo5 extends JFrame implements ActionListener {
+public class Connector  {
    
-    private ResultSet rs = null;
-
+    
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 
@@ -72,8 +67,9 @@ public class DBDemo5 extends JFrame implements ActionListener {
 	
 	/**
 	 * Connect to MySQL and do some stuff.
+	 * @return 
 	 */
-	public void run() {
+	public ResultSet run() {
 		// Connect to MySQL
 		Connection conn = null;
 		try {
@@ -82,22 +78,21 @@ public class DBDemo5 extends JFrame implements ActionListener {
 		} catch (SQLException e) {
 			System.out.println("ERROR: Could not connect to the database");
 			e.printStackTrace();
-			return;
+			return null;
 		}
 
 		// Create ResultSet 
 		try {
 			Statement s = conn.createStatement ();
 			s.executeQuery ("SELECT * FROM jdbc_test");
-			rs = s.getResultSet ();
+			ResultSet rs = s.getResultSet ();
 			System.out.println("Created a result set");
-			rs.next();
-			System.out.println(rs.getString("id"));
+			return rs;
 
 	    } catch (SQLException e) {
 			System.out.println("ERROR: Could not access the table");
 			e.printStackTrace();
-			return;
+			return null;
 		}
 	}
 	
