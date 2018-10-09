@@ -43,6 +43,15 @@ public class EmployeeGui extends JFrame implements ActionListener {
 	/*
 	 * Construction of GUI
 	 */
+     
+     /*
+      * Bounds 
+      * x - the new x-coordinate of this component
+		   y - the new y-coordinate of this component
+		   width - the new width of this component
+		   height - the new height of this component	
+      */
+     
 	public EmployeeGui() throws SQLException {
 		frame = new JFrame();
         frame.setVisible(true);
@@ -120,7 +129,7 @@ public class EmployeeGui extends JFrame implements ActionListener {
          * Buttons and button handlers
          */
         buttonAdd = new JButton();
-        buttonAdd.setBounds(95, 275, 60, 25);
+        buttonAdd.setBounds(95, 275, 80, 25);
         buttonAdd.setText("Add");
         frame.getContentPane().add(buttonAdd);
 
