@@ -21,8 +21,9 @@ public class EmployeeGui extends JFrame implements ActionListener{
 	 private JTextField txtSSn, txtDOB, txtName, txtAddress, txtSalary, txtGender;
 	 private ResultSet rs = null;
 
+	 private Connector conn = new Connector();
 	
-	JFrame frame = new JFrame();
+	 JFrame frame = new JFrame();
 
 	private ResultSet set;
 	
@@ -103,7 +104,8 @@ public class EmployeeGui extends JFrame implements ActionListener{
 	/*
 	 * Construction of GUI
 	 */
-	public EmployeeGui() {
+	public EmployeeGui() throws SQLException {
+	frame = new JFrame();
 	frame.setVisible(true);
 	frame.setBounds(100, 100, 500, 368);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -225,5 +227,34 @@ public class EmployeeGui extends JFrame implements ActionListener{
 	        	buttonAdd.addActionListener(this);
 	        	buttonUpdate.addActionListener(this);
 	        	buttonClear.addActionListener(this);
+	        	
+	        	
+	        	//gets the sql records and populates the fields
+	        	getSQL();
 	    }
+	
+	
+    /*
+    Sets text fields
+     */
+    private void setText(String id, String dob, String name, String address, int salary, String gender){
+        txtSSn.setText(id);
+        txtDOB.setText(dob);
+        txtName.setText(name);
+        txtAddress.setText(address);
+        txtSalary.setText(String.valueOf(salary));
+        txtGender.setText(gender);
+    }
+	
+	private void getSQL() throws SQLException{
+		set = conn.run();
+		if(set.next()) {
+			setText(set.getString("id"),
+					set.getString("dob"),
+					set.getString("name"),
+					set.getString("address"),
+					set.getInt("salary"),
+					set.getString("gender"));
+		}
+	}
 }
