@@ -47,55 +47,17 @@ public class Connector  {
 	}
 
 	/**
-	 * Run a SQL command which does not return a recordset:
-	 * CREATE/INSERT/UPDATE/DELETE/DROP/etc.
-	 * 
-	 * @throws SQLException If something goes wrong
+	 * Connect to MySQL and execute update added together and refactored
 	 */
-	public boolean executeUpdate(Connection conn, String command) throws SQLException {
-	    Statement stmt = null;
-	    try {
-	        stmt = conn.createStatement();
-	        stmt.executeUpdate(command); // This will throw a SQLException if it fails
-	        return true;
-	    } finally {
-
-	    	// This will run whether we throw an exception or not
-	        if (stmt != null) { stmt.close(); }
-	    }
-	}
-	
-	/**
-	 * Connect to MySQL and do some stuff.
-	 * @return 
-	 */
-	public ResultSet run() {
+	public ResultSet run() throws SQLException {
 		// Connect to MySQL
-		Connection conn = null;
-		try {
-			conn = this.getConnection();
-			System.out.println("Connected to database");
-		} catch (SQLException e) {
-			System.out.println("ERROR: Could not connect to the database");
-			e.printStackTrace();
-			return null;
-		}
+		Statement stmt = getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
+                ResultSet.CONCUR_UPDATABLE);
+        stmt.executeQuery("SELECT * FROM jdbc_test");
+        //System.out.println("Created a result set");
+        ResultSet rs = stmt.getResultSet();
+        return rs;
+    }
 
-		// Create ResultSet 
-		try {
-			Statement s = conn.createStatement ();
-			s.executeQuery ("SELECT * FROM jdbc_test");
-			ResultSet rs = s.getResultSet ();
-			System.out.println("Created a result set");
-			return rs;
-
-	    } catch (SQLException e) {
-			System.out.println("ERROR: Could not access the table");
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	// what happens after you click the buttons
 }
 	 
