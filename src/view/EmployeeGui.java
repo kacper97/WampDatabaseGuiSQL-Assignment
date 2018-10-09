@@ -8,22 +8,140 @@ import java.sql.SQLException;
 import java.util.Objects;
 import java.sql.ResultSet;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
-public class EmployeeGui extends JFrame implements ActionListener{
-
-	 private JLabel labelHeading, labelSSn, labelDOB, labelName, labelAddress, labelSalary, labelGender;
-	 private JButton buttonPrevious, buttonNext, buttonDelete, buttonAdd, buttonUpdate, buttonClear;
-	 private JTextField txtSSn, txtDOB, txtName, txtAddress, txtSalary, txtGender;
+public class EmployeeGui extends JFrame implements ActionListener {
+	
+	 private JFrame frame;
+	 private JLabel labelHeading;
+	 private JLabel labelSSn;
+	 private JLabel labelDOB;
+	 private JLabel labelName;
+	 private JLabel labelAddress;
+	 private JLabel labelSalary;
+	 private JLabel labelGender;
+	 private JButton buttonPrevious;
+	 private JButton buttonNext;
+	 private JButton buttonDelete;
+	 private JButton buttonAdd;
+	 private JButton buttonUpdate;
+	 private JButton buttonClear;
+	 private JTextField txtSSn;
+	 private JTextField txtDOB;
+	 private JTextField txtName;
+	 private JTextField txtAddress;
+	 private JTextField txtSalary;
+	 private JTextField txtGender;
 
 	 private Connector conn = new Connector();
-	
-	 JFrame frame = new JFrame();
 
-	private ResultSet rs;
+
+     private ResultSet rs;
+	
+
+	/*
+	 * Construction of GUI
+	 */
+	public EmployeeGui() throws SQLException {
+		frame = new JFrame();
+        frame.setVisible(true);
+        frame.setSize(555,400);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setLayout(null);
+
+        // Text Field
+        txtSSn = new JTextField();
+        txtSSn.setBounds(95, 55, 315, 30);
+        frame.getContentPane().add(txtSSn);
+
+        labelSSn = new JLabel("SSn");
+        labelSSn.setBounds(35, 60, 45, 20);
+        frame.getContentPane().add(labelSSn);
+
+        txtDOB = new JTextField();
+        txtDOB.setBounds(95, 90, 315, 30);
+        frame.getContentPane().add(txtDOB);
+
+        labelDOB = new JLabel("DOB");
+        labelDOB.setBounds(35, 98, 45, 20);
+        frame.getContentPane().add(labelDOB);
+
+        txtName = new JTextField();
+        txtName.setBounds(95, 130, 315, 30);
+        frame.getContentPane().add(txtName);
+
+        labelName = new JLabel("Name");
+        labelName.setBounds(35, 135, 45, 20);
+        frame.getContentPane().add(labelName);
+
+        txtAddress = new JTextField();
+        txtAddress.setBounds(95, 165, 315, 30);
+        frame.getContentPane().add(txtAddress);
+
+        labelAddress = new JLabel("Address");
+        labelAddress.setBounds(35, 170, 55, 20);
+        frame.getContentPane().add(labelAddress);
+
+        txtSalary = new JTextField();
+        txtSalary.setBounds(95, 201, 315, 30);
+        frame.getContentPane().add(txtSalary);
+
+        labelSalary = new JLabel("Salary");
+        labelSalary.setBounds(35, 200, 45, 20);
+        frame.getContentPane().add(labelSalary);
+
+        txtGender = new JTextField();
+        txtGender.setBounds(95, 237, 315, 30);
+        frame.getContentPane().add(txtGender);
+
+        labelGender = new JLabel("Gender");
+        labelGender.setBounds(35, 242, 46, 20);
+        frame.getContentPane().add(labelGender);
+
+        labelHeading = new JLabel("Employee Details");
+        labelHeading.setBounds(200, 24, 315,30);
+        frame.getContentPane().add(labelHeading);
+        
+        buttonAdd = new JButton();
+        buttonAdd.setBounds(95, 275, 60, 25);
+        buttonAdd.setText("Add");
+        frame.getContentPane().add(buttonAdd);
+
+        buttonDelete = new JButton();
+        buttonDelete.setBounds(159, 275, 80, 25);
+        buttonDelete.setText("Delete");
+        frame.getContentPane().add(buttonDelete);
+
+        buttonClear = new JButton("Clear");
+        buttonClear.setBounds(420, 275, 80, 25);
+        frame.getContentPane().add(buttonClear);
+
+        buttonUpdate = new JButton();
+        buttonUpdate.setBounds(240, 275, 80, 25);
+        buttonUpdate.setText("Update");
+        frame.getContentPane().add(buttonUpdate);
+
+        buttonPrevious = new JButton();
+        buttonPrevious.setBounds(420, 55, 80, 25);
+        buttonPrevious.setText("Previous");
+        frame.getContentPane().add(buttonPrevious);
+
+        buttonNext = new JButton();
+        buttonNext.setBounds(420, 90, 80, 25);
+        buttonNext.setText("Next");
+        frame.getContentPane().add(buttonNext);
+
+        buttonAdd.addActionListener(this);
+        buttonClear.addActionListener(this);
+        buttonDelete.addActionListener(this);
+        buttonUpdate.addActionListener(this);
+        buttonPrevious.addActionListener(this);
+        buttonNext.addActionListener(this);
+
+	        	
+	        	//gets the sql records and populates the fields
+	        	getSQL();
+	    }
 	
 	
 	 /*
@@ -40,7 +158,7 @@ public class EmployeeGui extends JFrame implements ActionListener{
 		System.out.println("You pressed PREVIOUS");
 			try {	
 						rs.previous();
-		            rsText  (rs.getString("id"),
+		            setText  (rs.getString("id"),
 		                    rs.getString("dob"),
 		                    rs.getString("name"),
 		                    rs.getString("address"),
@@ -58,7 +176,7 @@ public class EmployeeGui extends JFrame implements ActionListener{
            // Insert resultSet.next() code here
 			try {
 				rs.next();
-				rsText(rs.getString("id"),
+				setText(rs.getString("id"),
 		                rs.getString("dob"),
 		                rs.getString("name"),
 		                rs.getString("address"),
@@ -137,143 +255,11 @@ public class EmployeeGui extends JFrame implements ActionListener{
 	
     }
 	
-	/*
-	 * Construction of GUI
-	 */
-	public EmployeeGui() throws SQLException {
-	frame = new JFrame();
-	frame.setVisible(true);
-	frame.setBounds(400,400, 700, 400);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.getContentPane().setLayout(null);
-    
-	 // Labels initialization
-		  labelSSn = new JLabel("SSn");
-		  labelDOB= new JLabel("DOB");
-		  labelName = new JLabel("Name");
-		  labelAddress = new JLabel("Address");
-		  labelSalary = new JLabel("Salary");
-		  labelGender = new JLabel("Gender");
-		  labelHeading = new JLabel("Employee Details");
-
-		 // Text Fields initialization
-		 txtSSn = new JTextField();
-		 txtDOB = new JTextField();
-		 txtName = new JTextField();
-		 txtAddress = new JTextField();
-		 txtSalary = new JTextField();
-		 txtGender = new JTextField();
-		 
-		 // Buttons initialization
-		 buttonAdd = new JButton("Add");
-		 buttonNext = new JButton("Next");
-	     buttonPrevious = new JButton("Previous");
-	     buttonUpdate = new JButton("Update");
-	     buttonClear = new JButton("Clear");
-	     buttonDelete= new JButton("Delete");
-
-        /*
-         * Bounds 
-         * x - the new x-coordinate of this component
-		   y - the new y-coordinate of this component
-		   width - the new width of this component
-		   height - the new height of this component	
-         */
-        //Add Button
-        buttonAdd.setBounds(93, 273, 64, 25);
-        buttonAdd.setText("Add");
-        frame.getContentPane().add(buttonAdd);
-
-        //Text Field SSN
-        txtSSn.setBounds(130, 55, 315, 27);
-        frame.getContentPane().add(txtSSn);
-
-        //Label SSN
-        labelSSn.setBounds(25, 60, 46, 20);
-        frame.getContentPane().add(labelSSn);
-
-        //Text Field DOB
-        txtDOB.setBounds(130, 93, 315, 27);
-        frame.getContentPane().add(txtDOB);
-
-        //Label DOB
-        labelDOB.setBounds(25, 98, 46, 20);
-        frame.getContentPane().add(labelDOB);
-
-        //Text Field Name
-        txtName.setBounds(130, 130, 315, 27);
-        frame.getContentPane().add(txtName);
-
-        //Label Name
-        labelName.setBounds(25, 135, 46, 20);
-        frame.getContentPane().add(labelName);
-
-        //Text Field Address
-        txtAddress.setBounds(130, 165, 315, 27);
-        frame.getContentPane().add(txtAddress);
-
-        //Label Address
-        labelAddress.setBounds(25, 170, 55, 20);
-        frame.getContentPane().add(labelAddress);
-
-       	//Text Field Salary
-        txtSalary.setBounds(130, 201, 315, 27);
-        frame.getContentPane().add(txtSalary);
-
-        //Label Salary
-        labelSalary.setBounds(25, 206, 46, 20);
-        frame.getContentPane().add(labelSalary);
-
-        //Text Field Gender
-        txtGender.setBounds(130, 237, 315, 27);
-        frame.getContentPane().add(txtGender);
-        
-        //Label Gender
-     	labelGender.setBounds(25, 242, 46, 20);
-        frame.getContentPane().add(labelGender);
-
-        //Label Heading
-        labelHeading.setBounds(198, 24, 315,30);
-        frame.getContentPane().add(labelHeading);
-
-        //Button Delete
-        buttonDelete.setBounds(144, 273, 80, 25);
-        frame.getContentPane().add(buttonDelete);
-
-        //Button Clear
-        buttonClear.setBounds(415, 273, 90, 25);
-        frame.getContentPane().add(buttonClear);
-
-        //Button Update
-        buttonUpdate.setBounds(211, 273, 80, 25);
-        frame.getContentPane().add(buttonUpdate);
-
-        //Button Previous
-        buttonPrevious.setBounds(415, 55, 90, 25);
-        frame.getContentPane().add(buttonPrevious);
-
-        //Button Next
-        buttonNext.setBounds(415, 80, 90, 25);
-        frame.getContentPane().add(buttonNext);
-	        	
-		// Add action listeners
-	        	buttonPrevious.addActionListener(this);
-	        	buttonNext.addActionListener(this);
-	        	buttonDelete.addActionListener(this);
-	        	buttonAdd.addActionListener(this);
-	        	buttonUpdate.addActionListener(this);
-	        	buttonClear.addActionListener(this);
-	        	
-	        	
-	        	//gets the sql records and populates the fields
-	        	getSQL();
-	    }
-	
 	
     /*
     Sets text fields
          */
-    private void rsText(String id, String dob, String name, String address, int salary, String gender){
+    private void setText(String id, String dob, String name, String address, int salary, String gender){
         txtSSn.setText(id);
         txtDOB.setText(dob);
         txtName.setText(name);
@@ -285,7 +271,7 @@ public class EmployeeGui extends JFrame implements ActionListener{
 	private void getSQL() throws SQLException{
 		rs = conn.run();
 		if(rs.next()) {
-			rsText(rs.getString("id"),
+			setText(rs.getString("id"),
 					rs.getString("dob"),
 					rs.getString("name"),
 					rs.getString("address"),

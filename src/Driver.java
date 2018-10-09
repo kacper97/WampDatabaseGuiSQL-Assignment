@@ -2,7 +2,7 @@ import view.EmployeeGui;
 import utils.Connector;
 
 import java.sql.SQLException;
-import javax.swing.JFrame;
+import javax.swing.*;
 
 
 
@@ -20,9 +20,7 @@ public class Driver{
             e.printStackTrace();
         }
         jdbc.run();
-	    EmployeeGui app = new EmployeeGui();
-        app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        app.pack();
-        app.setVisible(true);
+	    EmployeeGui driver = new EmployeeGui();
+        driver.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
