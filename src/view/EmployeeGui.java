@@ -148,12 +148,12 @@ public class EmployeeGui extends JFrame implements ActionListener {
         frame.getContentPane().add(buttonUpdate);
 
         buttonPrevious = new JButton();
-        buttonPrevious.setBounds(420, 55, 80, 25);
+        buttonPrevious.setBounds(420, 55, 90, 25);
         buttonPrevious.setText("Previous");
         frame.getContentPane().add(buttonPrevious);
 
         buttonNext = new JButton();
-        buttonNext.setBounds(420, 90, 80, 25);
+        buttonNext.setBounds(420, 90, 90, 25);
         buttonNext.setText("Next");
         frame.getContentPane().add(buttonNext);
 
@@ -183,7 +183,7 @@ public class EmployeeGui extends JFrame implements ActionListener {
 	{
 		System.out.println("You pressed PREVIOUS");
 			try {	
-						rs.next();
+						rs.previous();
 		            setText  (rs.getString("id"),
 		                    rs.getString("dob"),
 		                    rs.getString("name"),
