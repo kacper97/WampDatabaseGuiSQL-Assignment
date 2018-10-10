@@ -1,4 +1,4 @@
-import view.EmployeeGui;
+import view.Gui;
 import utils.Connector;
 
 import java.sql.SQLException;
@@ -20,7 +20,7 @@ public class Driver{
             e.printStackTrace();
         }
         jdbc.run();
-	    EmployeeGui driver = new EmployeeGui();
+	    Gui driver = new Gui();
         driver.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
