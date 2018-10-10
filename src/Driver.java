@@ -2,13 +2,9 @@ import view.EmployeeGui;
 import utils.Connector;
 
 import java.sql.SQLException;
-import javax.swing.*;
-
- 	
-
 public class Driver{
 /**
-	 * Connect to the DB and do some stuff
+	 * Connect to the DB
  * @throws SQLException 
 	 */
 	public static void main(String[] args) throws SQLException {
@@ -19,6 +15,7 @@ public class Driver{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        //run gets the result set
         jdbc.run();
 	    EmployeeGui driver = new EmployeeGui();
 	    driver.frame.setVisible(true);

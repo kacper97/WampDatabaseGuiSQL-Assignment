@@ -1,5 +1,5 @@
 package view;
-
+//imports
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -24,6 +24,8 @@ public class EmployeeGui {
 	private JTextField txtAddress;
 	private JTextField txtSalary;
 	private JTextField txtGender;
+	
+	//conn is new connector class, result set variable settin
 	private Connector conn = new Connector();
 	private ResultSet rs;
 
@@ -323,6 +325,4 @@ public class EmployeeGui {
 						rs.getString("gender"));
 			}
 		}
-	
-
 }
